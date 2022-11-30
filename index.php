@@ -18,8 +18,10 @@
                     <li class="list-group-item" v-for="task in listTasks">{{task}}</li>
                 </ul>
                 <div class="">
-                    <input type="text" name="addTask" v-model="task" @keyup.enter="addTask">
-                    <button type="submit" class="btn btn-dark" @click="addTask">Add Task</button>
+                    <form action="server.php" method="POST">
+                        <input type="text" name="addTask" id="addTask">
+                        <button type="submit" class="btn btn-dark">Add Task</button>
+                    </form>
                 </div>
 
 

@@ -15,16 +15,6 @@ createApp({
                     //console.log(response);
                     this.listTasks = response.data
                 })
-        },
-        addTask() {
-            const data = {
-                mytask: this.task
-            }
-            axios.post('server.php', data, {
-                Headers: { 'Content-Type': 'multipart/from-data' }
-            }).then(response => {
-                this.listTasks = response.data
-            })
         }
     },
     mounted() {
