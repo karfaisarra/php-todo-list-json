@@ -37,6 +37,13 @@ createApp(
                     .catch(err => {
                         console.error(err.message);
                     })
+            },
+            crossedOutTask(index) {
+                console.log('task barrata');
+                this.tasks[index].done = !this.tasks[index].done
+            },
+            cancelTask(index) {
+                console.log(this.tasks[index]);
 
             }
         },
