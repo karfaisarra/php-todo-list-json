@@ -7,27 +7,24 @@
     <title>PHP ToDo List JSON</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <div id="app">
-        <div class="container">
-            <h1 class="text-center text-secondary">Todo List</h1>
-            <div class="d-flex flex-column align-items-center">
-                <ul class="list-group list-group-flush ">
-                    <li class="list-group-item" v-for="task in listTasks">{{task}}</li>
-                </ul>
-                <div class="">
-                    <form action="server.php" method="POST">
-                        <input type="text" name="addTask" id="addTask">
-                        <button type="submit" class="btn btn-dark">Add Task</button>
-                    </form>
-                </div>
-
-
-            </div>
+    <div id="app" class="text-white">
+        <h1>Tasks</h1>
+        <div class="add_task">
+            <input type="text" v-model="newTask" @keyup.enter="saveTask">
+            <button @click="saveTask">Add</button>
         </div>
-
+        <div class="tasks" v-if="tasks.length">
+            <ul>
+                <li v-for="task in tasks">{{task.title}} </li>
+            </ul>
+        </div>
+        <div v-else="">
+            <p>No tasks!</p>
+        </div>
     </div>
 
     <!--CDN-->

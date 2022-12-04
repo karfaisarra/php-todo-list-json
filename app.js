@@ -1,23 +1,48 @@
 const { createApp } = Vue
+createApp(
+    {
+        data() {
+            return {
+                api_url: 'server.php',
+                tasks: [],
+                newTask: ''
+            }
+        },
+        methods: {
+            readTasks(url) {
 
-createApp({
-    data() {
-        return {
-            listTasks: [],
-            task: '',
+                axios
+                    .get(url)
+                    .then(response => {
+                        //console.log(response); 
+                        this.tasks = response.data
+                    })
+                    .catch(err => {
+                        console.error(err.message);
+                    })
+            },
+            saveTask() {
+                const data = {
+                    title: this.newTask
+                }
+                axios
+                    .post('store.php', data, {
+                        headers: { 'Content-Type': 'multipart/form-data' }
+                    })
+                    .then(response => {
+                        console.log(response);
+                        this.tasks = response.data
+                        this.newTask = ''
+                    })
+                    .catch(err => {
+                        console.error(err.message);
+                    })
+
+            }
+        },
+        mounted() {
+            this.readTasks(this.api_url)
         }
-    },
-    methods: {
-        showTaskes(url) {
-            axios
-                .get(url)
-                .then(response => {
-                    //console.log(response);
-                    this.listTasks = response.data
-                })
-        }
-    },
-    mounted() {
-        this.showTaskes('server.php')
     }
-}).mount('#app')
+)
+    .mount('#app')

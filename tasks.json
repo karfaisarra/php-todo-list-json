@@ -1,1 +1,26 @@
-["HTML","CSS","Responsive design","Javascript","PHP","Laravel","Python"]
+[
+    {
+        "title": "HTML",
+        "done": false
+    },
+    {
+        "title": "CSS",
+        "done": false
+    },
+    {
+        "title": "Responsive design",
+        "done": false
+    },
+    {
+        "title": "Javascript",
+        "done": false
+    },
+    {
+        "title": "PHP",
+        "done": false
+    },
+    {
+        "title": "Laravel",
+        "done": false
+    }
+]
