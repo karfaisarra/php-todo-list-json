@@ -12,18 +12,25 @@
 
 <body>
     <div id="app" class="text-white">
-        <h1>Tasks</h1>
-        <div class="add_task">
-            <input type="text" v-model="newTask" @keyup.enter="saveTask">
-            <button @click="saveTask">Add</button>
-        </div>
-        <div class="tasks" v-if="tasks.length">
-            <ul>
-                <li v-for="task in tasks">{{task.title}} </li>
-            </ul>
-        </div>
-        <div v-else="">
-            <p>No tasks!</p>
+        <div class="container w-50">
+            <h1 class="text-center my-5">Tasks</h1>
+            <div class="add_task d-flex gap-2 mb-3">
+                <input type="text" v-model="newTask" @keyup.enter="saveTask" class="form-control">
+                <button @click="saveTask" class="btn btn-secondary">Add</button>
+            </div>
+            <div class="tasks" v-if="tasks.length">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between" v-for="(task, i) in tasks">
+                        <span @click.stop="crossedOutTask(i)" :class="{'text-decoration-line-through' : task.done}">{{task.title}}</span>
+                        <button class="btn btn-danger" @click.stop="cancelTask(i)">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div v-else="">
+                <p>No tasks!</p>
+            </div>
         </div>
     </div>
 
